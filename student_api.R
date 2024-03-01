@@ -18,13 +18,11 @@ function() {
 
 #* Add a student
 #* @param name The name of the student
-#* @param email The email of the student
-#* @param birthDate The birth date of the student
-#* @param hometown The hometown of the student
-#* @param finalGrade The final grade of the student
+#* @param age The age of the student
+#* @param grade The grade of the student
 #* @post /add_student
-function(name, email, birthDate, hometown, finalGrade) {
-  query <- sprintf("INSERT INTO students (name, email, birth_date, hometown, final_grade) VALUES ('%s', '%s', '%s', '%s', %f)", name, email, birthDate, hometown, finalGrade)
+function(name, age, grade) {
+  query <- sprintf("INSERT INTO students (name, age, grade) VALUES ('%s', '%s', '%s')", name, as.character(age), grade)
   dbExecute(con, query)
   return("Student added successfully")
 }
@@ -32,13 +30,11 @@ function(name, email, birthDate, hometown, finalGrade) {
 #* Update a student
 #* @param id The id of the student to update
 #* @param name The new name of the student
-#* @param email The new email of the student
-#* @param birthDate The new birth date of the student
-#* @param hometown The new hometown of the student
-#* @param finalGrade The new final grade of the student
+#* @param age The new age of the student
+#* @param grade The new grade of the student
 #* @put /update_student
-function(id, name, email, birthDate, hometown, finalGrade) {
-  query <- sprintf("UPDATE students SET name='%s', email='%s', birth_date='%s', hometown='%s', final_grade=%f WHERE id=%d", name, email, birthDate, hometown, finalGrade, id)
+function(id, name, age, grade) {
+  query <- sprintf("UPDATE students SET name='%s', age='%s', grade='%s' WHERE id=%s", name, as.character(age), grade, as.character(id))
   dbExecute(con, query)
   return("Student updated successfully")
 }
@@ -47,7 +43,8 @@ function(id, name, email, birthDate, hometown, finalGrade) {
 #* @param id The id of the student to delete
 #* @delete /delete_student
 function(id) {
-  query <- sprintf("DELETE FROM students WHERE id=%d", id)
+  query <- sprintf("DELETE FROM students WHERE id=%s", as.character(id))
   dbExecute(con, query)
   return("Student deleted successfully")
 }
+
