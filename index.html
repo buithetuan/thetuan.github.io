@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Student Management System</h1>
+    </header>
+    <main>
+        <button id="btnAdd">Add Student</button>
+        <button id="btnEdit">Edit Student</button>
+        <button id="btnDelete">Delete Student</button>
+        <button id="btnShow">Show List</button>
+
+        <form id="addStudentForm" class="hidden">
+            <label for="studentName">Name:</label>
+            <input type="text" id="studentName" required><br>
+            <label for="studentEmail">Email:</label>
+            <input type="email" id="studentEmail" required><br>
+            <label for="studentBirthDate">Birth Date:</label>
+            <input type="date" id="studentBirthDate" required><br>
+            <label for="studentHometown">Hometown:</label>
+            <input type="text" id="studentHometown" required><br>
+            <label for="studentGrade">Final Grade:</label>
+            <input type="number" id="studentGrade" min="0" max="10" step="0.01" required><br>
+            <button type="button" id="btnSubmitStudent">Submit</button>
+        </form>
+
+        <form id="editStudentForm" class="hidden">
+            <label for="editStudentID">ID:</label>
+            <input type="text" id="editStudentID" required><br>
+            <label for="editStudentName">Name:</label>
+            <input type="text" id="editStudentName" required><br>
+            <label for="editStudentEmail">Email:</label>
+            <input type="email" id="editStudentEmail" required><br>
+            <label for="editStudentBirthDate">Birth Date:</label>
+            <input type="date" id="editStudentBirthDate" required><br>
+            <label for="editStudentHometown">Hometown:</label>
+            <input type="text" id="editStudentHometown" required><br>
+            <label for="editStudentGrade">Final Grade:</label>
+            <input type="number" id="editStudentGrade" min="0" max="10" step="0.01" required><br>
+            <button type="button" id="btnSubmitEdit">Submit</button>
+        </form>
+
+        <form id="deleteStudentForm" class="hidden">
+            <label for="deleteStudentID">ID:</label>
+            <input type="text" id="deleteStudentID" required><br>
+            <button type="button" id="btnSubmitDelete">Submit</button>
+        </form>
+
+        <table id="studentTable" class="hidden">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Birth Date</th>
+                    <th>Hometown</th>
+                    <th>Final Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Student data will be displayed here -->
+            </tbody>
+        </table>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
