@@ -12,9 +12,6 @@
     </header>
     <main>
         <button id="btnAdd">Add Student</button>
-        <button id="btnEdit">Edit Student</button>
-        <button id="btnDelete">Delete Student</button>
-        <button id="btnShow">Show List</button>
 
         <form id="addStudentForm" class="hidden">
             <label for="studentName">Name:</label>
@@ -52,7 +49,7 @@
             <button type="button" id="btnSubmitDelete">Submit</button>
         </form>
 
-        <table id="studentTable" class="hidden">
+        <table id="studentTable">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -61,14 +58,16 @@
                     <th>Birth Date</th>
                     <th>Hometown</th>
                     <th>Final Grade</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                <!-- Student data will be displayed here -->
+                
             </tbody>
         </table>
     </main>
 
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 </html>
