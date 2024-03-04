@@ -18,11 +18,11 @@ function() {
 
 #* Add a student
 #* @param name The name of the student
-#* @param birthDate The birthDate of the student
-#* @param finalGrade The finalGrade of the student
+#* @param age The age of the student
+#* @param grade The grade of the student
 #* @post /add_student
-function(name, birthDate, finalGrade) {
-  query <- sprintf("INSERT INTO students (name, birthDate, final_grade) VALUES ('%s', '%s', '%s')", name, as.character(birthDate), finalGrade)
+function(name, age, grade) {
+  query <- sprintf("INSERT INTO students (name, age, grade) VALUES ('%s', '%s', '%s')", name, as.character(age), grade)
   dbExecute(con, query)
   return("Student added successfully")
 }
@@ -30,13 +30,11 @@ function(name, birthDate, finalGrade) {
 #* Update a student
 #* @param id The id of the student to update
 #* @param name The new name of the student
-#* @param birthDate The new birthDate of the student
-#* @param finalGrade The new finalGrade of the student
+#* @param age The new age of the student
+#* @param grade The new grade of the student
 #* @put /update_student
-function(id, name, birthDate, finalGrade) {
-  # check if id not exist -> not exist user ?? 
-  # return("User not exist with id")
-  query <- sprintf("UPDATE students SET name='%s', birth_date='%s', final_grade='%s' WHERE id=%s", name, as.character(birthDate), finalGrade, as.integer(id))
+function(id, name, age, grade) {
+  query <- sprintf("UPDATE students SET name='%s', age='%s', grade='%s' WHERE id=%s", name, as.character(age), grade, as.character(id))
   dbExecute(con, query)
   return("Student updated successfully")
 }
@@ -45,7 +43,24 @@ function(id, name, birthDate, finalGrade) {
 #* @param id The id of the student to delete
 #* @delete /delete_student
 function(id) {
-  query <- sprintf("DELETE FROM students WHERE id=%s", as.integer(id))
+  query <- sprintf("DELETE FROM students WHERE id=%s", as.character(id))
   dbExecute(con, query)
   return("Student deleted successfully")
 }
+
+#' @filter cors
+cors <- function(req, res) {
+  
+  res$setHeader("Access-Control-Allow-Origin", "*")
+  
+  if (req$REQUEST_METHOD == "OPTIONS") {
+    res$setHeader("Access-Control-Allow-Methods","*")
+    res$setHeader("Access-Control-Allow-Headers", req$HTTP_ACCESS_CONTROL_REQUEST_HEADERS)
+    res$status <- 200 
+    return(list())
+  } else {
+    plumber::forward()
+  }
+}
+
+
